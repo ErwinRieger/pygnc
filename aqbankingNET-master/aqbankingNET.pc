@@ -1,0 +1,5 @@
+Name: aqbankingNET 
+Description: C# wrapper for the aqbanking library
+Version: 1.0
+
+Libs: -r:/usr/lib/mono/gac/aqbankingNET5/0.0.0.0__0738eb9f132ed756/aqbankingNET5.dll 
