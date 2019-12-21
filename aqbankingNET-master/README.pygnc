@@ -1,0 +1,4 @@
+Aqbanking/gwenhywfar python interface for PyGnc.
+This work is based on *https://github.com/Dynalon/aqbankingNET* from Timo Dörr.
+I've removed the C-sharp/Mono .dll stuff and updated aqbanking.i for a newer aqbanking version
+(aqbanking-5.99.40beta and gwenhywfar-4.99.22rc6 as of dec 2019).

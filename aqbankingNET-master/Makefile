@@ -35,32 +35,29 @@ WRAPPER_LIB=lib$(WRAPPER_NAME).so.$(AQBANKING_VERSION)
 CIL_NAME=aqbankingNET$(AQBANKING_MAJOR)
 CIL_DLL=$(CIL_NAME).dll
 BUILD_OUTPUT_PATH=bin
-CS_OUTPUT_PATH=csharp-tmp
 
 # Flags for compiling & linking into a shared .so
-CFLAGS=-Wno-deprecated-declarations -fPIC -shared -Wl,-soname,$(WRAPPER_MAJOR_ALIAS)
+CFLAGS=-g -Wno-deprecated-declarations -fPIC -shared -Wl,-soname,$(WRAPPER_MAJOR_ALIAS) -I/usr/include/python2.7
 
 all: checks gen_wrapper build_cswrapper build_wrapper 
 
 checks:
-	@which gmcs > /dev/null
+	# @which gmcs > /dev/null
 	@which swig > /dev/null
 	@which gcc > /dev/null
 	@which pkg-config > /dev/null
 
 gen_wrapper:	$(SWIG_INTERFACE)
 	### Autogenerate C# wrappers from Aqbanking & Gwenhywfar headers
-	@mkdir -p $(CS_OUTPUT_PATH) 
+	@mkdir -p $(BUILD_OUTPUT_PATH) 
 	$(SWIG) $(AQBANKING_CFLAGS) $(GWENHYWFAR_CFLAGS) \
-		-outdir $(CS_OUTPUT_PATH) \
-		-dllimport $(WRAPPER_NAME) \
-		-namespace $(NAMESPACE) \
-		-csharp $(SWIG_INTERFACE)
+		-outdir $(BUILD_OUTPUT_PATH) \
+		-python $(SWIG_INTERFACE)
 
 build_cswrapper:
 	@mkdir -p $(BUILD_OUTPUT_PATH)
 	@# Compile the .cs files and sign with the mono (not so) private key
-	$(GMCS) -t:library -keyfile:mono.snk -out:$(BUILD_OUTPUT_PATH)/$(CIL_DLL) $(CS_OUTPUT_PATH)/*.cs
+	$(GMCS) -t:library -keyfile:mono.snk -out:$(BUILD_OUTPUT_PATH)/$(CIL_DLL) $(BUILD_OUTPUT_PATH)/*.cs
 
 build_wrapper:
 	### Compiling the C wrapper libary: $(WRAPPER_LIB)
@@ -70,7 +67,9 @@ build_wrapper:
 		$(GWENHYWFAR_CFLAGS) $(AQBANKING_CFLAGS) \
 		$(GWENHYWFAR_LDFLAGS) $(AQBANKING_LDFLAGS) 
 
-install:
+install: install_lib install_dll
+
+install_lib:
 	### Copying $(WRAPPER_LIB) to $(DESTDIR)/$(LIBDIR)/
 	install -D $(BUILD_OUTPUT_PATH)/$(WRAPPER_LIB) $(DESTDIR)/$(LIBDIR)/$(WRAPPER_LIB)
 	rm -rf $(DESTDIR)/$(LIBDIR)/$(WRAPPER_MAJOR_ALIAS)
@@ -78,6 +77,7 @@ install:
 	rm -rf $(DESTDIR)/$(LIBDIR)/$(WRAPPER_GENERIC_ALIAS)
 	ln -s $(DESTDIR)/$(LIBDIR)/$(WRAPPER_LIB)  $(DESTDIR)/$(LIBDIR)/$(WRAPPER_GENERIC_ALIAS)
 
+install_dll:
 	# in rpm builds its likely $(DESTDIR)mono/gac does not exist, so create it
 	mkdir -p $(GAC_ROOT)/mono/gac/
 	### Installing $(CIL_DLL) to global assembly cache (GAC)
@@ -96,6 +96,6 @@ uninstall:
 	rm -rf $(GAC_ROOT)/mono/aqbankingNET/
 
 clean: 
-	@rm -rf *.o *.c $(CS_OUTPUT_PATH)
+	@rm -rf *.o *.c $(BUILD_OUTPUT_PATH)
 	@rm -rf *.so
 	@rm -rf *.dll *.tmp $(BUILD_OUTPUT_PATH)
