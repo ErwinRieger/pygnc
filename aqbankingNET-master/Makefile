@@ -1,6 +1,6 @@
 # it is HIGHLY RECOMMENDED you leave DESTDIR to /usr, else you need LOTS of
 # adjustements in this Makefile to get it working
-DESTDIR=/usr
+DESTDIR=$(PREFIX)
 # specify where is monos GAC
 GAC_ROOT=$(DESTDIR)/lib
 # might be overriden to lib64 
@@ -39,7 +39,7 @@ BUILD_OUTPUT_PATH=bin
 # Flags for compiling & linking into a shared .so
 CFLAGS=-g -Wno-deprecated-declarations -fPIC -shared -Wl,-soname,$(WRAPPER_MAJOR_ALIAS) -I/usr/include/python2.7
 
-all: checks gen_wrapper build_cswrapper build_wrapper 
+all: checks gen_wrapper build_wrapper 
 
 checks:
 	# @which gmcs > /dev/null
@@ -77,6 +77,11 @@ install_lib:
 	rm -rf $(DESTDIR)/$(LIBDIR)/$(WRAPPER_GENERIC_ALIAS)
 	ln -s $(DESTDIR)/$(LIBDIR)/$(WRAPPER_LIB)  $(DESTDIR)/$(LIBDIR)/$(WRAPPER_GENERIC_ALIAS)
 
+	rm -f $(DESTDIR)/$(LIBDIR)/_AB.so
+	ln -s $(DESTDIR)/$(LIBDIR)/$(WRAPPER_LIB)  $(DESTDIR)/$(LIBDIR)/_AB.so
+	install $(BUILD_OUTPUT_PATH)/AB.py $(DESTDIR)/$(LIBDIR)
+
+	
 install_dll:
 	# in rpm builds its likely $(DESTDIR)mono/gac does not exist, so create it
 	mkdir -p $(GAC_ROOT)/mono/gac/
