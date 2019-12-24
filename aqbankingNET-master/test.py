@@ -1,7 +1,7 @@
 
 import AB
 
-print "loaded AB module: ", AB
+print "loaded AB module..."
 
 api = AB.AB_Banking_new("gnucash", None, 0)
 
