@@ -1,0 +1,26 @@
+diff -cr src/gui/gui.h ../psd2/gwenhywfar-4.99.22rc6/src/gui/gui.h
+*** src/gui/gui.h	2019-10-08 02:26:56.000000000 +0200
+--- ../psd2/gwenhywfar-4.99.22rc6/src/gui/gui.h	2019-11-17 19:07:22.737254710 +0100
+***************
+*** 1075,1080 ****
+--- 1075,1081 ----
+   * @param defaultPort default port if not specified by the url
+   * @param baseSio base layer to extend (e.g. created by @ref GWEN_SyncIo_Socket_new)
+   */
++ GWENHYWFAR_API
+  GWEN_SYNCIO *GWEN_Gui_ExtendSyncIo(const char *url,
+                                     const char *defaultProto,
+                                     int defaultPort,
+diff -cr src/parser/db.h ../psd2/gwenhywfar-4.99.22rc6/src/parser/db.h
+*** src/parser/db.h	2019-10-08 02:26:56.000000000 +0200
+--- ../psd2/gwenhywfar-4.99.22rc6/src/parser/db.h	2019-11-17 19:03:35.200069270 +0100
+***************
+*** 495,500 ****
+--- 495,501 ----
+   * @param path path and name of the variable
+   * @param val The integer value to be stored as string value in the DB
+   */
++ GWENHYWFAR_API
+  int GWEN_DB_SetCharValueFromInt(GWEN_DB_NODE *n,
+                                  uint32_t flags,
+                                  const char *path,
