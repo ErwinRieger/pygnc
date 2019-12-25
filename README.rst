@@ -2,10 +2,9 @@
 PyGnc - buchhaltung mit gnucash, aqbanking and python
 ======================================================
 
+My Gnucash extensions for german small businesses using gnucash, aqbanking and python (https://github.com/ErwinRieger/ibr-gnc-module reloaded).
 
 .. contents::
-
-
 
 Installation
 +++++++++++++
