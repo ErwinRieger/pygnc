@@ -43,7 +43,7 @@ Compilierung der abhängigkeiten
 
 Aqbanking und Gwenhywfar:
 
-::
+.. code-block:: sh
 
     cd "$PYGNCSRC"
     tar xvf /tmp/gwenhywfar-4.99.22rc6.tar.gz
@@ -67,14 +67,14 @@ Gnucash:
 
 :Note: todo...
 
-::
+.. code-block:: sh
 
     cd "$PYGNCSRC"
 
 
 PyGnc aqbanking python interface:
 
-::
+.. code-block:: sh
 
     cd "$PYGNCSRC"
     cd pygnc/aqbankingNET-master
@@ -82,7 +82,7 @@ PyGnc aqbanking python interface:
 
 Einfacher test der aqbanking schnittstelle, das python script *test.py* listet alle in aqbanking konfigurierten konten auf:
 
-::
+.. code-block:: sh
 
     ➜  aqbankingNET-master git:(master) python test.py
 
