@@ -26,7 +26,7 @@ Environment, source code verzeichnis
 
 Zunächst suchen wir uns ein verzeichnis zum bauen der softwarepakete aus und weisen es der *PYGNCSRC* environment variable zu:
 
-::
+.. code-block:: sh
 
     # Where we build stuff
     export PYGNCSRC="$HOME/bh/source"
@@ -37,7 +37,6 @@ Zunächst suchen wir uns ein verzeichnis zum bauen der softwarepakete aus und we
     # Get pygnc sources, and setup shell environment
     git clone git@github.com:ErwinRieger/pygnc.git
     . pygnc/bin/pygnc.env
-
 
 Compilierung der abhängigkeiten
 -------------------------------------
