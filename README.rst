@@ -41,7 +41,8 @@ Zunächst suchen wir uns ein verzeichnis zum bauen der softwarepakete aus und we
 Compilierung der abhängigkeiten
 -------------------------------------
 
-Aqbanking und Gwenhywfar:
+Aqbanking und Gwenhywfar
+************************
 
 .. code-block:: sh
 
@@ -63,7 +64,8 @@ Aqbanking und Gwenhywfar:
     cd ..
 
 
-Gnucash:
+Gnucash
+*******
 
 :Note: todo...
 
@@ -72,7 +74,8 @@ Gnucash:
     cd "$PYGNCSRC"
 
 
-PyGnc aqbanking python interface:
+PyGnc aqbanking python interface
+********************************
 
 .. code-block:: sh
 
@@ -105,7 +108,11 @@ Benutzung
 
 :Note: todo...
 
+Referenzen
++++++++++++++
 
+* Gnucash-de mailing liste, thema *Gnucash 3.7+ ASCII CSV export für DATEV Kanzlei Rechnungswesen* im dezember 2019:
+  https://lists.gnucash.org/pipermail/gnucash-de/2019-December/thread.html
 
 
 
