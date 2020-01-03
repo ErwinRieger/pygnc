@@ -213,9 +213,9 @@ def main():
     # Sub Commandline parser:
     # 
     parser_vam = subparsers.add_parser("vam", help="UST Voranmeldung monatlich")
-    parser_vam.add_argument("-m", dest="m", action="store", type=int, help="Start-Monat VA, default: letzer monat (%d)" % lastMonth.month,
+    parser_vam.add_argument("-m", dest="m", action="store", type=int, help="Monat der VA, default: letzer monat (%d)" % lastMonth.month,
         default = lastMonth.month)
-    parser_vam.add_argument("-y", dest="y", action="store", type=int, help="Start-Jahr VA, default: dieses jahr (%d)" % lastMonth.year,
+    parser_vam.add_argument("-y", dest="y", action="store", type=int, help="Jahr der VA, default: jahr des letzten monats (%d)" % lastMonth.year,
         default = lastMonth.year)
     parser_vam.add_argument("gncfile", help="Input gnucash file.")
 
@@ -228,9 +228,9 @@ def main():
     # Sub Commandline parser:
     # 
     parser_vaq = subparsers.add_parser("vaq", help="UST Voranmeldung quartal")
-    parser_vaq.add_argument("-m", dest="m", action="store", type=int, help="Start-Monat VA, default: letzes quartal (%d)" % lastMonth3.month,
+    parser_vaq.add_argument("-m", dest="m", action="store", type=int, help="Start-Monat VA, default: start letzes quartal (%d)" % lastMonth3.month,
         default = lastMonth3.month)
-    parser_vaq.add_argument("-y", dest="y", action="store", type=int, help="Start-Jahr VA, default: letzes quartal (%d)" % lastMonth3.year,
+    parser_vaq.add_argument("-y", dest="y", action="store", type=int, help="Start-Jahr VA, default: jahr des letzten quartals (%d)" % lastMonth3.year,
         default = lastMonth3.year)
     parser_vaq.add_argument("gncfile", help="Input gnucash file.")
 
